@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="urn:com:ericsson:schema:xml:oss:fbp_flow" xmlns:oc="urn:com:ericsson:schema:xml:oss:oss_common" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" oc:ns="com.ericsson.oss.services" oc:name="CSLSolutionSet" oc:version="1.0.0">
+   <oc:modelCreationInfo author="eachsaj" creationDate="25/5/2016">
+      <oc:designedModel componentId="BatchProcessingSpark" />
+   </oc:modelCreationInfo>
+   <oc:desc>ExtEps Test for an extension Simple Batch Processing</oc:desc>
+   <input name="file-iris-csv">
+      <attribute name="uri" value="file:///@CurrentPath@iris.csv" />
+      <attribute name="header" value="true" />
+      <!-- if this false define schema in json format and use the option -Dheader on deployment -->
+      <attribute name="inferSchema" value="true" />
+      <attribute name="drop-malformed" value="true" />
+      <attribute name="data.format" value="csv" />
+      <attribute name="skip-comments" value="true" />
+      <attribute name="quote" value="&quot;" />
+      <attribute name="table-name" value="testspec" />
+      <!-- If this enabled the data will be materialized , otherwise will dropped after finishing job -->
+   </input>
+   <output name="file-out-put">
+      <attribute name="uri" value="file:///tmp/batch-op" />
+      <!-- If this enabled the data will not materialized -->
+      <attribute name="data.format" value="text" /> <!-- json,text --> 
+   </output>
+   <step name="iris-data-analysis">
+	  <attribute name="master.url" value="local[*]" />	
+      <attribute name="uri" value="spark-ml-batch://iris-data-analysis" />
+   </step>
+   <path>
+      <from uri="file-stream-csv" />
+      <to uri="iris-data-analysis" />
+      <to uri="file-out-put" />
+   </path>
+</FlowDefinition>

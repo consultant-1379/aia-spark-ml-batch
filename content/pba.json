@@ -1,0 +1,277 @@
+{
+	"pba": {
+		"icon": "<icon path>",
+		"authorInfo": {
+			"author": "echchik",
+			"email": "chetan.chikmandya.puttegowda@ericsson.com",
+			"publishingDate": "15/03/2017 11:00:00",
+			"location": "Athlone"
+		},
+		"templateInfo": {
+			"id": "d5169318-9a09-4d48-842a-0585b8399a74",
+			"name": "aia-spark-ml-batch",
+			"title": "Apache Spark Machine Learning",
+			"version": "1.0.6",
+			"description": "Apache Spark Machine Learning template generates more than 70% code, allowing Application developer to focus on business logic implementation and gives flexibility to choose any compatible libraries.  It Supports a variety of data Sources, Sinks, and formats. For more information, visit documentation."
+		},
+		"scmInfo": {
+			"scm": "git:ssh://gerrit.ericsson.se:29418/AIA/com.ericsson.component.aia.sdk.templates/aia-spark-ml-batch",
+			"scmTag": "HEAD"
+		},
+		"extensionPoints": [{
+			"name": "file-input",
+			"uri": {
+				"protocol": "file://",
+				"address": "{path}",
+				"dataFormat": "<csv/text>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "header",
+					"value": "<true/false>"
+				},
+				{
+					"key": "data.format",
+					"value": "<csv/text>"
+				},
+				{
+					"key": "skip-comments",
+					"value": "<true/false>"
+				},
+				{
+					"key": "table-name",
+					"value": "Table name to load file contents"
+				}
+			]
+		}, {
+			"name": "hdfs-input",
+			"uri": {
+				"protocol": "hdfs://",
+				"address": "<Path to file on hdfs>",
+				"dataFormat": "<parquet/orc/csv>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "skip-comments",
+					"value": "<true/false>"
+				},
+				{
+					"key": "table-name",
+					"value": "Table name to load parquet/orc file contents"
+				}
+			]
+		}, {
+			"name": "hive-input",
+			"uri": {
+				"protocol": "hive://",
+				"address": "<Hive table name>",
+				"dataFormat": "<parquet/orc/csv>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": []
+		}, {
+			"name": "alluxio-input",
+			"uri": {
+				"protocol": "alluxio://",
+				"address": "<Path to file>",
+				"dataFormat": "<parquet/orc/csv>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "skip-comments",
+					"value": "<true/false>"
+				},
+				{
+					"key": "table-name",
+					"value": "Table name to load parquet/orc file contents"
+				}
+			]
+		}, {
+			"name": "jdbc-input",
+			"uri": {
+				"protocol": "JDBC://",
+				"address": "<jdbc-uri>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "password",
+					"value": "<passwd>"
+				},
+				{
+					"key": "user",
+					"value": "<user-name>"
+				},
+				{
+					"key": "driver",
+					"value": "<driver-class>"
+				},
+				{
+					"key": "table.name",
+					"value": "<table-name>"
+				}
+			]
+		}],
+		"integrationPoints": [{
+			"name": "kafka-output",
+			"uri": {
+				"protocol": "kafka://",
+				"address": "<topic_name>",
+				"dataFormat": "<avro/json>",
+				"dataSchema": "<EventTypeSchema>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "bootstrap.servers",
+					"value": ["<host1:port>", "<host2:port>"]
+				},
+				{
+					"key": "group.id",
+					"value": "<group id>"
+				},
+				{
+					"key": "window.length",
+					"value": "<Window duration of the data stream>"
+				},
+				{
+					"key": "slide.window.length",
+					"value": "<Sliding window duration of the data stream>"
+				}
+			]
+		}, {
+			"name": "hdfs-output",
+			"uri": {
+				"protocol": "hdfs://",
+				"address": "<Path to file on hdfs>",
+				"dataFormat": "<parquet/orc/csv>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+				"key": "data.save.mode",
+				"value": "Append/Overwrite/ErrorIfExists/Ignore"
+			}]
+		}, {
+			"name": "hive-output",
+			"uri": {
+				"protocol": "hive://",
+				"address": "<Hive table name>",
+				"dataFormat": "<parquet/orc>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+				"key": "data.save.mode",
+				"value": "Append/Overwrite/ErrorIfExists/Ignore"
+			}]
+		}, {
+			"name": "alluxio-output",
+			"uri": {
+				"protocol": "alluxio://",
+				"address": "<Path to file>",
+				"dataFormat": "<parquet/orc/csv>",
+				"dataSchema": "<DataSchema>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "skip-comments",
+					"value": "<true/false>"
+				},
+				{
+					"key": "data.save.mode",
+					"value": "Append/Overwrite/ErrorIfExists/Ignore"
+				}
+			]
+		}, {
+			"name": "jdbc-output",
+			"uri": {
+				"protocol": "JDBC://",
+				"address": "<jdbc-uri>",
+				"dataSchema": "<POJO representing the TABLE in JDBC DB>",
+				"args": []
+			},
+			"attributes": [{
+					"key": "password",
+					"value": "<passwd>"
+				},
+				{
+					"key": "user",
+					"value": "<user-name>"
+				},
+				{
+					"key": "driver",
+					"value": "<driver-class>"
+				},
+				{
+					"key": "table.name",
+					"value": "<table-name>"
+				}
+			]
+		}, {
+			"name": "file-output",
+			"uri": {
+				"protocol": "file://",
+				"address": "{path}",
+				"dataFormat": "<text/csv>",
+				"dataSchema": "DataSchema",
+				"args": []
+			},
+			"attributes": []
+		}],
+		"buildInfo": {
+			"container": {
+				"docker": {
+					"name": "<Docker service name>",
+					"repoBaseUrl": "<Docker repo base URL>",
+					"repoPath": "<Docker repo path/name>",
+					"imagePath": "<Docker image path with respect to repoPath>",
+					"network": "<network type>",
+					"forcePullImage": true,
+					"privileged": true
+				}
+			},
+			"dependencies": {
+				"applications": []
+			}
+		},
+		"deploymentInfo": {
+			"maturity": 0,
+			"stagingStatus": true,
+			"inProduction": true,
+			"deploymentScope": "private|public",
+			"noOfInstances": "1",
+			"noOfCpuPerInstance": "1",
+			"memorySize": "<In GB>",
+			"appArgs": [{
+					"key": "mainClass",
+					"value": "<main-class of Spark app>"
+				},
+				{
+					"key": "deployMode",
+					"value": "<client/cluster>"
+				},
+				{
+					"key": "masterUrl",
+					"value": "<sparkmaster-ip:port>"
+				},
+				{
+					"key": "bpsJar",
+					"value": "hdfs://<path on hdfs>"
+				},
+				{
+					"key": "flowPath",
+					"value": "hdfs://<path on hdfs>"
+				},
+				{
+					"key": "jobArguments",
+					"value": "<other arguments>"
+				}
+			],
+			"attributes": []
+		}
+	}
+}
